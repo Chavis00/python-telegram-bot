@@ -43,8 +43,11 @@ def urlShortener(update,context):
 
 
 #Current weather anywhere in the world
-def getWeather(update,context):
+#Get API Key from https://home.openweathermap.org/api_keys
 
+def getWeather(update,context):
+	
+    APIKEY = "YourAPIKEY"
     place = str(context.args)
     place = place.replace('[', '')
     place = place.replace(']', '')
@@ -52,7 +55,7 @@ def getWeather(update,context):
     place = place.replace(" ", '')
     place = place.replace(",", '+')
 
-    api = str("http://api.openweathermap.org/data/2.5/weather?q="+str(place)+"&appid=1057ef5bdda46891a29454d971648b91")
+    api = str("http://api.openweathermap.org/data/2.5/weather?q="+str(place)+"&appid="+APIKEY)
     json_data = requests.get(api).json()
     condition = json_data['weather'][0]['main']
     temp = int(json_data['main']['temp'] - 273.15)
